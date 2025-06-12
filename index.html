@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
   <title>С ДНЕМ РОЖДЕНИЯ!!! :)</title>
@@ -14,8 +14,9 @@
   <link rel="stylesheet" href="./style/main.css" />
 </head>
 <body>
-    <audio class="song" loop>
-        <source src="./music/hbd.mpeg">
+    <audio class="song" loop autoplay>
+        <source src="./music/3.mp3">
+        </source>
         Ваш браузер не приглашен для прослушивания песни.
     </audio>
     <div class="container">
@@ -25,7 +26,7 @@
                 <span id="name">Вероника Хорошок)</span>
             </h1>
             <p class="two" id="greetingText" style="font-weight: bold;">Кстати, очень классное фамилия!</p>
-            <video id="intro-video" src="./img/начало.MP4" playsinline webkit-playsinline></video>
+            <video id="intro-video" src="./img/начало.MP4"></video>
         </div>
         <div class="three">
             <p>Сегодня твой день рождения!! :D</p>
@@ -54,20 +55,20 @@
                 <span>:)</span>
             </p>
             <p class="idea-6">
-                 <span>🥳</span>
+                <span>🥳</span>
                 <span>О</span>
                 <span>Ч</span>
                 <span>Е</span>
                 <span>Н</span>
                 <span>Ь</span>
-                  <span>🌟</span>
+                <span>🌟</span>
             </p>
         </div>
         <div class="six">
             <img src="./img/2.jpg" alt="profile" class="profile-picture" id="imagePath"/>
             <img src="img/hat.svg" alt="hat" class="hat" />
             <div class="wish">
-                <h3 class="wish-hbd">С днем рождения, чемпионка!</h3>
+                <h3 class="wish-hbd">С  днем  рождения,  чемпионка!</h3>
                 <h5 id="wishText">🤩💪🥋</h5>
             </div>
         </div>
@@ -141,9 +142,10 @@
             <p>Ну, как тебе идея в таком формате, понравилось ли тебе?</p>
             <p id="replay">Или нажми, если хочешь еще раз посмотреть</p>
             <p class="last-smile">:)</p>
-            <video id="happy-video" src="./img/happy.MP4" playsinline webkit-playsinline></video>
+            <video id="happy-video" src="./img/happy.MP4" preload="none"></video>
         </div>
     </div>
+
     <!-- Greensock -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <!-- Sweetalert -->

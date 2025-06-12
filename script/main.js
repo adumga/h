@@ -1,7 +1,3 @@
-// Определение типа устройства
-const isMobile = /iPhone|iPad|iPod|Android|BlackBerry|Opera Mini/i.test(navigator.userAgent);
-const isDesktop = !isMobile;
-
 // trigger to play music in the background with sweetalert
 window.addEventListener('load', () => {
     Swal.fire({
@@ -34,24 +30,19 @@ const animationTimeline = () => {
         .split("")
         .join("</span><span>")}</span>`;
     
-    // Базовые параметры анимации
-    const baseDuration = isMobile ? 0.5 : 0.7;
-    const fastDuration = isMobile ? 0.3 : 0.5;
-    const animationSpeed = isMobile ? 0.6 : 1;
-    
     const ideaTextTrans = {
         opacity: 0,
         y: -20,
         rotationX: 5,
         skewX: "15deg"
-    };
+    }
     
     const ideaTextTransLeave = {
         opacity: 0,
         y: 20,
         rotationY: 5,
         skewX: "-15deg"
-    };
+    }
     
     // timeline
     const tl = new TimelineMax();
@@ -62,203 +53,261 @@ const animationTimeline = () => {
     }
     if (document.getElementById("happy-video")) {
         document.getElementById("happy-video").pause();
-    }
+    } 
     
-    // Адаптация анимации под устройство
-    tl.to(".container", 0.6 * animationSpeed, {
+    tl.to(".container", 0.6, {
         visibility: "visible"
     })
-    .from(".one", baseDuration * animationSpeed, {
+    .from(".one", 0.7, {
         opacity: 0,
         y: 10
     })
-    .from(".two", fastDuration * animationSpeed, {
+    .from(".two", 0.4, {
         opacity: 0,
         y: 10
     })
-    .to(".one", baseDuration * animationSpeed, {
-        opacity: 0,
-        y: 10
-    }, "+=2.5")
-    .to(".two", baseDuration * animationSpeed, {
-        opacity: 0,
-        y: 10
-    }, "-=1")
-    .from(".three", baseDuration * animationSpeed, {
+    .to(".one",
+        0.7,
+        {
+            opacity: 0,
+            y: 10
+        },
+    "+=3.5")
+    .to(".two",
+        0.7,
+        {
+            opacity: 0,
+            y: 10
+        },
+    "-=1")
+    .from(".three", 0.7, {
         opacity: 0,
         y: 10
     })
-    .to(".three", baseDuration * animationSpeed, {
-        opacity: 0,
-        y: 10
-    }, "+=2")
-    .from(".four", baseDuration * animationSpeed, {
-        scale: isMobile ? 0.1 : 0.2,
+    .to(".three",
+        0.7,
+        {
+            opacity: 0,
+            y: 10
+        },
+    "+=3")
+    .from(".four", 0.7, {
+        scale: 0.2,
         opacity: 0,
     })
-    .from(".fake-btn", fastDuration * animationSpeed, {
-        scale: isMobile ? 0.1 : 0.2,
+    .from(".fake-btn", 0.3, {
+        scale: 0.2,
         opacity: 0,
     })
-    .staggerTo(".hbd-chatbox span", 1 * animationSpeed, {
-        visibility: "visible",
-    }, 0.03)
-    .to(".fake-btn", fastDuration * animationSpeed, {
+    .staggerTo(
+        ".hbd-chatbox span",
+        1.5, {
+            visibility: "visible",
+        },
+        0.05
+    )
+    .to(".fake-btn", 0.1, {
         backgroundColor: "rgb(127, 206, 248)",
-    }, "+=2.5")
-    .to(".four", fastDuration * animationSpeed, {
-        scale: isMobile ? 0.1 : 0.2,
-        opacity: 0,
-        y: isMobile ? -100 : -150
-    }, "+=1")
-    .from(".idea-1", baseDuration * animationSpeed, ideaTextTrans)
-    .to(".idea-1", baseDuration * animationSpeed, ideaTextTransLeave, "+=2")
-    .from(".idea-2", baseDuration * animationSpeed, ideaTextTrans)
-    .to(".idea-2", baseDuration * animationSpeed, ideaTextTransLeave, "+=2")
-    .from(".idea-3", baseDuration * animationSpeed, ideaTextTrans)
-    .to(".idea-3 strong", fastDuration * animationSpeed, {
+    },
+    "+=4")
+    .to(
+        ".four",
+        0.5, {
+            scale: 0.2,
+            opacity: 0,
+            y: -150
+        },
+    "+=1")
+    .from(".idea-1", 0.7, ideaTextTrans)
+    .to(".idea-1", 0.7, ideaTextTransLeave, "+=2.5")
+    .from(".idea-2", 0.7, ideaTextTrans)
+    .to(".idea-2", 0.7, ideaTextTransLeave, "+=2.5")
+    .from(".idea-3", 0.7, ideaTextTrans)
+    .to(".idea-3 strong", 0.5, {
         scale: 1.2,
         x: 10,
         backgroundColor: "rgb(21, 161, 237)",
         color: "#fff",
     })
-    .to(".idea-3", baseDuration * animationSpeed, ideaTextTransLeave, "+=2")
-    .from(".idea-4", baseDuration * animationSpeed, ideaTextTrans)
-    .to(".idea-4", baseDuration * animationSpeed, ideaTextTransLeave, "+=2")
-    .from(".idea-5", baseDuration * animationSpeed, {
-        rotationX: 15,
-        rotationZ: -10,
-        skewY: "-5deg",
-        y: 50,
-        z: 10,
-        opacity: 0,
-    }, "+=1")
-    .to(".idea-5 span", fastDuration * animationSpeed, {
-        rotation: 90,
-        x: 8,
-    }, "+=1")
-    .to(".idea-5", baseDuration * animationSpeed, {
-        scale: 0.2,
-        opacity: 0,
-    }, "+=1.5")
-    .staggerFrom(".idea-6 span", 0.8 * animationSpeed, {
-        scale: 3,
-        opacity: 0,
-        rotation: 15,
-        ease: Expo.easeOut,
-    }, isMobile ? 0.1 : 0.2)
-    .staggerTo(".idea-6 span", 0.8 * animationSpeed, {
-        scale: 3,
-        opacity: 0,
-        rotation: -15,
-        ease: Expo.easeOut,
-    }, isMobile ? 0.1 : 0.2, "+=1")
-    .staggerFromTo(".baloons img", 2 * animationSpeed, {
-        opacity: 0.9,
-        y: isMobile ? 700 : 1400,
-    }, {
-        opacity: 1,
-        y: isMobile ? -500 : -1000,
-    }, 0.1)
-    .from(".profile-picture", fastDuration * animationSpeed, {
-        scale: isMobile ? 2.5 : 3.5,
-        opacity: 0,
-        x: 25,
-        y: -25,
-        rotationZ: -45,
-    }, "-=1.5")
-    .from(".hat", fastDuration * animationSpeed, {
+    .to(".idea-3", 0.7, ideaTextTransLeave, "+=2.5")
+    .from(".idea-4", 0.7, ideaTextTrans)
+    .to(".idea-4", 0.7, ideaTextTransLeave, "+=2.5")
+    .from(
+        ".idea-5",
+        0.7, {
+            rotationX: 15,
+            rotationZ: -10,
+            skewY: "-5deg",
+            y: 50,
+            z: 10,
+            opacity: 0,
+        },
+        "+=1.5"
+    )
+    .to(
+        ".idea-5 span",
+        0.7, {
+            rotation: 90,
+            x: 8,
+        },
+        "+=1.4"
+    )
+    .to(
+        ".idea-5",
+        0.7, {
+            scale: 0.2,
+            opacity: 0,
+        },
+        "+=2"
+    )
+    .staggerFrom(
+        ".idea-6 span",
+        0.8, {
+            scale: 3,
+            opacity: 0,
+            rotation: 15,
+            ease: Expo.easeOut,
+        },
+        0.2
+    )
+    .staggerTo(
+        ".idea-6 span",
+        0.8, {
+            scale: 3,
+            opacity: 0,
+            rotation: -15,
+            ease: Expo.easeOut,
+        },
+        0.2,
+        "+=1.5"
+    )
+    .staggerFromTo(
+        ".baloons img",
+        2.5, {
+            opacity: 0.9,
+            y: 1400,
+        }, {
+            opacity: 1,
+            y: -1000,
+        },
+        0.2
+    )
+    .from(
+        ".profile-picture",
+        0.5, {
+            scale: 3.5,
+            opacity: 0,
+            x: 25,
+            y: -25,
+            rotationZ: -45,
+        },
+        "-=2"
+    )
+    .from(".hat", 0.5, {
         x: -100,
-        y: isMobile ? 300 : 600,
+        y: 600,
         rotation: -180,
         opacity: 0,
     })
-    .staggerFrom(".wish-hbd span", 0.5 * animationSpeed, {
+    .staggerFrom(
+        ".wish-hbd span",
+        0.7, {
+            opacity: 0,
+            y: -50,
+            rotation: 150,
+            skewX: "30deg",
+            ease: Elastic.easeOut.config(1, 0.5),
+        },
+        0.1
+    )
+    .staggerFromTo(
+        ".wish-hbd span",
+        0.7, {
+            scale: 1.4,
+            rotationY: 150,
+        }, {
+            scale: 1,
+            rotationY: 0,
+            color: "#ff69b4",
+            ease: Expo.easeOut,
+        },
+        0.1,
+        "party"
+    )
+    .from(
+        ".wish h5",
+        0.5, {
+            opacity: 0,
+            y: 10,
+            skewX: "-15deg",
+        },
+        "party"
+    )
+    .staggerTo(
+        ".eight svg",
+        1.5, {
+            visibility: "visible",
+            opacity: 0,
+            scale: 80,
+            repeat: 3,
+            repeatDelay: 1.4,
+        },
+        0.3
+    )
+    .to(".six", 0.5, {
         opacity: 0,
-        y: isMobile ? -30 : -50,
-        rotation: 150,
-        skewX: "30deg",
-        ease: Elastic.easeOut.config(1, 0.5),
-    }, 0.05)
-    .staggerFromTo(".wish-hbd span", 0.5 * animationSpeed, {
-        scale: 1.2,
-        rotationY: 150,
-    }, {
-        scale: 1,
-        rotationY: 0,
-        color: "#ff69b4",
-        ease: Expo.easeOut,
-    }, 0.05, "party")
-    .from(".wish h5", fastDuration * animationSpeed, {
-        opacity: 0,
-        y: 10,
-        skewX: "-15deg",
-    }, "party")
-    .staggerTo(".eight svg", 1 * animationSpeed, {
-        visibility: "visible",
-        opacity: 0,
-        scale: isMobile ? 50 : 80,
-        repeat: isMobile ? 2 : 3,
-        repeatDelay: isMobile ? 1 : 1.4,
-    }, isMobile ? 0.15 : 0.3)
-    .to(".six", fastDuration * animationSpeed, {
-        opacity: 0,
-        y: isMobile ? 20 : 30,
+        y: 30,
         zIndex: "-1",
     })
-    .staggerFrom(".nine p", isMobile ? 0.7 : 1, ideaTextTrans, isMobile ? 0.7 : 1.2)
-    .to(".last-smile", fastDuration * animationSpeed, {
-        rotation: 90,
-    }, "+=0.5");
+    .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
+    .to(
+        ".last-smile",
+        0.5, {
+            rotation: 90,
+        },
+        "+=1"
+    );
     
     const twoAppear = tl.getTweensOf(".two")[0]; // from(".two")
     const twoDisappear = tl.getTweensOf(".two")[1]; // to(".two")
     
     tl.add(() => {
         document.getElementById("intro-video").play();
-    }, twoAppear.startTime())
+    }, twoAppear.startTime());
     
-    .add(() => {
+    tl.add(() => {
         document.getElementById("intro-video").pause();
     }, twoDisappear.startTime());
+     
     
-    // Перезапуск анимации по щелчку мыши или касанию
+    // Перезапуск анимации по щелчку мыши
     const replyBtn = document.getElementById("replay");
     replyBtn.addEventListener("click", () => {
-        const happyVideo = document.getElementById("happy-video");
-        if (happyVideo) {
-            happyVideo.pause();
-            happyVideo.currentTime = 0;
-            happyVideo.style.display = "none";
-            happyVideo.style.opacity = "0";
-        }
         tl.restart();
     });
-    
-    // Анимация появления видео после всех элементов .nine p
-    tl.fromTo("#happy-video", {
-        opacity: 0,
-        y: isMobile ? 10 : 20,
-        display: "none"
-    }, {
-        duration: isMobile ? 0.4 : 0.6,
-        opacity: 1,
-        y: 0,
-        display: "block",
-        ease: "power2.out"
-    }, ">+=0.3")
-    .add(() => {
-        const video = document.getElementById("happy-video");
-        if (video) {
-            video.currentTime = 0;
-            video.play();
-        }
-    });
-    
-    // Обработчик для разрешения воспроизведения на мобильных устройствах
-    document.addEventListener('touchstart', function() {
-        if(document.querySelector('.song') && document.querySelector('.song').paused) {
-            document.querySelector('.song').play();
-        }
-    }, {once: true});
+  
+// Анимация появления видео после всех элементов .nine p
+tl.fromTo(
+  "#happy-video",
+  {
+    opacity: 0,
+    y: 20,
+    display: "none"
+  },
+  {
+    duration: 0.6,
+    opacity: 1,
+    y: 0,
+    display: "block",
+    ease: "power2.out"
+  },
+  ">+=0.5" // Через 0.5 секунды после окончания предыдущей анимации
+)
+.add(() => {
+  const video = document.getElementById("happy-video");
+  if (video) {
+    video.currentTime = 0;
+    video.play();
+  }
+});
 }
